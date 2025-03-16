@@ -59,13 +59,13 @@ class BankAccount:
         except ValueError:
             print('Введіть число')
 
-    def info(self, month):
+    def info(self, month, year):
         try:
             with (open(self.name + '_transactions.txt', 'r', encoding='utf-8') as readfile,
                   open(self.name + '_info.txt', 'w', encoding='utf-8') as infofile):
                 reading = readfile.readlines()
                 for line in reading:
-                    if month.lower() in line.lower():
+                    if month.lower() in line.lower() and year in line:
                         infofile.write(line)
         except FileNotFoundError:
             print('Файл транзакцій не знайдено')
@@ -79,12 +79,12 @@ andrii = BankAccount('Andrii')
 oleh = BankAccount('Oleh')
 nadiia = BankAccount('Nadiia')
 ihor = BankAccount('Ihor')
-#andrii.deposit()
-#andrii.withdraw()
-#andrii.transfer(oleh)
-#andrii.transfer(nadiia)
-#nadiia.transfer(andrii)
-ihor.info('june')
+andrii.deposit()
+andrii.withdraw()
+andrii.transfer(oleh)
+andrii.transfer(nadiia)
+nadiia.transfer(andrii)
+andrii.info('june', '2024')
 
 
 
